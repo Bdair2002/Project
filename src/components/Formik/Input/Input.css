@@ -1,0 +1,53 @@
+.error {
+  color: var(--error);
+  font-size: 0.75rem;
+  text-align: left;
+  margin-top: 0.25rem;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.65rem 0.5rem;
+  font-size: 1rem;
+  color: var(--black);
+  border: 2px solid var(--orange);
+  outline: none;
+  accent-color: var(--orange);
+  caret-color: var(--orange);
+}
+
+input:focus,
+select:focus {
+  border-color: var(--orange);
+}
+
+input::placeholder,
+select::placeholder {
+  color: var(--black);
+}
+
+input.input-error,
+select.input-error {
+  border-color: var(--error);
+}
+
+.tick-mark {
+  position: absolute;
+  right: -10%;
+  transform: translateY(-50%);
+  top: 50%;
+}
+.input-label {
+  font-size: 1rem;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+  display: block;
+}
