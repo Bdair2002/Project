@@ -1,20 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
 :root {
-  --white: #fdf9e0;
-  --orange: #af621f;
-  --orange-light: #dda15e;
-  --green: #283618;
-  --green-light: #606c38;
-  --black: #333;
-  --error: #fc8181;
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Ubuntu';
-  font-optical-sizing: auto;
-  font-style: normal;
+
 }
 body {
   margin: 0;
