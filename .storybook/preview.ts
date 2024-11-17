@@ -1,5 +1,9 @@
 import type { Preview } from '@storybook/react';
-import '../src/index.css';
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { withThemeFromJSXProvider } from '@storybook/addon-themes';
+import { lightTheme, darkTheme } from '../src/themes';
 const preview: Preview = {
   parameters: {
     controls: {
@@ -10,5 +14,15 @@ const preview: Preview = {
     },
   },
 };
-
+export const decorators = [
+  withThemeFromJSXProvider({
+    themes: {
+      light: lightTheme,
+      dark: darkTheme,
+    },
+    defaultTheme: 'light',
+    Provider: ThemeProvider,
+    GlobalStyles: CssBaseline,
+  }),
+];
 export default preview;
