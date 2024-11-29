@@ -1,11 +1,14 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { LOGIN } from '../constants/routes';
-interface Props {
-  children: React.ReactElement | null;
-}
-const UserRouter = ({ children }: Props) => {
-  const token = localStorage.getItem('token');
-  return token ? { children } : <Navigate to={LOGIN} />;
+import Cookies from 'js-cookie';
+import { getDecodedUser } from '../utils/decodeToken';
+const UserRouter = () => {
+  if (!Cookies.get('jwt')) {
+    return <Navigate to={LOGIN} />;
+  }
+  const user = getDecodedUser();
+
+  return user?.userType === 'User' ? <Outlet /> : <Navigate to={LOGIN} />;
 };
 
 export default UserRouter;
