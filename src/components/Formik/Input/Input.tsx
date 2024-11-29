@@ -1,41 +1,29 @@
-import React, { forwardRef } from 'react';
-import './Input.css';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
+import { Field, useField } from 'formik';
+import React from 'react';
 
-type InputProps = {
-  accept?: string;
-  name?: string;
-  id: string;
-  type: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  className: string;
-  required?: boolean;
+interface InputFieldProps {
+  name: string;
+  label: string;
+}
+
+const InputField: React.FC<InputFieldProps & TextFieldProps> = props => {
+  const [field, meta] = useField(props.name);
+  return (
+    <Field name={props.name}>
+      {() => (
+        <TextField
+          {...field}
+          {...props}
+          label={props.label}
+          error={meta.touched && Boolean(meta.error)}
+          helperText={meta.touched && meta.error}
+          fullWidth
+          margin="normal"
+        />
+      )}
+    </Field>
+  );
 };
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ required, accept, name, id, type, placeholder, value, onChange, onBlur, className }, ref) => {
-    return (
-      <div className="inputField">
-        <input
-          required={required}
-          ref={ref}
-          className={`input ${className}`}
-          name={name}
-          id={id}
-          value={value}
-          type={type}
-          placeholder={placeholder}
-          accept={accept}
-          onChange={onChange}
-          onBlur={onBlur}
-        />
-      </div>
-    );
-  },
-);
-
-Input.displayName = 'Input';
-
-export default Input;
+export default InputField;

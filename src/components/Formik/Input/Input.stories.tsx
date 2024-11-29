@@ -1,39 +1,70 @@
-import { ComponentProps } from 'react';
-import Input from './Input';
+import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import InputField from './Input';
 
-type StoryProps = ComponentProps<typeof Input>;
-
-const meta: Meta<StoryProps> = {
-  title: 'Input',
-  component: Input,
+const meta: Meta<typeof InputField> = {
+  title: 'Components/InputField',
+  component: InputField,
+  decorators: [
+    Story => (
+      <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+        <Story />
+      </div>
+    ),
+  ],
+  argTypes: {
+    name: { control: 'text' },
+    label: { control: 'text' },
+  },
 };
+
 export default meta;
-type Story = StoryObj<StoryProps>;
-export const TextInput: Story = {
+
+type Story = StoryObj<typeof InputField>;
+
+const FormikWrapper: React.FC<{ children: React.ReactNode; args: any }> = ({ children, args }) => (
+  <Formik
+    initialValues={{ [args.name]: '' }}
+    validationSchema={Yup.object({
+      [args.name]: Yup.string()
+        .required('This field is required')
+        .max(args.maxLength || 50, `Must be ${args.maxLength || 50} characters or less`),
+    })}
+    onSubmit={values => {
+      console.log('Form values:', values);
+    }}>
+    <Form>{children}</Form>
+  </Formik>
+);
+
+export const Default: Story = {
   args: {
-    name: 'text',
-    id: 'email',
-    type: 'email',
-    placeholder: 'Email',
-    value: '',
-    onChange: fn(),
-    onBlur: fn(),
-    className: '',
+    name: 'example',
+    label: 'Example Field',
   },
-  render: args => <Input {...args} />,
+  render: args => (
+    <FormikWrapper args={args}>
+      <InputField {...args} />
+    </FormikWrapper>
+  ),
 };
-export const PasswordInput: Story = {
+
+export const ErrorState: Story = {
   args: {
-    name: 'password',
-    id: 'password',
-    type: 'password',
-    placeholder: 'Password',
-    value: '',
-    onChange: fn(),
-    onBlur: fn(),
-    className: '',
+    name: 'exampleError',
+    label: 'Field with Error',
   },
-  render: args => <Input {...args} />,
+  render: args => (
+    <Formik
+      initialValues={{ [args.name]: '' }}
+      initialErrors={{ [args.name]: 'This is an error' }}
+      initialTouched={{ [args.name]: true }}
+      onSubmit={() => {}}>
+      <Form>
+        <InputField {...args} />
+      </Form>
+    </Formik>
+  ),
 };
