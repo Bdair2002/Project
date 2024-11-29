@@ -1,6 +1,16 @@
 import { createTheme } from '@mui/material/styles';
+import type {} from '@mui/x-data-grid/themeAugmentation';
 
 export const lightTheme = createTheme({
+  components: {
+    MuiDataGrid: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+  },
   palette: {
     mode: 'light',
     primary: {
@@ -47,7 +57,7 @@ export const darkTheme = createTheme({
     },
     text: {
       primary: '#ffffff',
-      secondary: '#aaaaaa',
+      secondary: '#aaa',
     },
     action: {
       active: '#90caf9',
