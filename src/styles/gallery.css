@@ -1,0 +1,36 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 180px);
+  grid-gap: 7px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.grid a:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.gallery-item {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+.hide {
+  display: none;
+}
+.last-item {
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid a:first-child {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+}
