@@ -1,8 +1,15 @@
-import { createSlice, isPending } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { User } from '../../api/types';
+import Cookies from 'js-cookie';
 
-const initialState = {
-  user: null,
-  token: localStorage.getItem('token') || null,
+import { getDecodedUser, DecodedUser } from '../../utils/decodeToken';
+interface AuthState {
+  user: DecodedUser | null;
+  status: 'idle' | 'pending' | 'success' | 'failure';
+  error: string | null;
+}
+const initialState: AuthState = {
+  user: getDecodedUser(),
   status: 'idle',
   error: null,
 };
@@ -15,25 +22,23 @@ const authSlice = createSlice({
       state.error = null;
     },
     loginUserSuccess: (state, action) => {
-      const { user, token } = action.payload;
-      state.user = user;
-      state.token = token;
+      const user: User = action.payload;
       state.status = 'success';
-      localStorage.setItem('token', token);
+      Cookies.set('jwt', user.authentication);
+
+      state.user = getDecodedUser();
     },
     loginUserFailure: (state, action) => {
       state.user = null;
-      state.token = null;
       state.status = 'failure';
       state.error = action.payload;
-      localStorage.removeItem('token');
+      Cookies.remove('jwt');
     },
     logOut: state => {
       state.user = null;
-      state.token = null;
       state.status = 'idle';
       state.error = null;
-      localStorage.removeItem('token');
+      Cookies.remove('jwt');
     },
   },
 });
