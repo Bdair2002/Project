@@ -1,9 +1,8 @@
 import type { Preview } from '@storybook/react';
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { lightTheme, darkTheme } from '../src/themes';
+import { withRouter } from 'storybook-addon-remix-react-router';
 const preview: Preview = {
   parameters: {
     controls: {
@@ -15,6 +14,7 @@ const preview: Preview = {
   },
 };
 export const decorators = [
+  withRouter,
   withThemeFromJSXProvider({
     themes: {
       light: lightTheme,

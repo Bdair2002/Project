@@ -1,10 +1,14 @@
 const esModules = ['axios', '@bundled-es-modules'].join('|');
-
 module.exports = {
   roots: ['<rootDir>/src'],
   verbose: true,
-  testEnvironment: 'jsdom',
+  testEnvironment: 'jest-fixed-jsdom',
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+  },
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  moduleDirectories: ['node_modules', 'src'],
   transform: {
     '^.+\\.(ts|tsx)?$': 'babel-jest',
     '^.+\\.(js|jsx)$': 'babel-jest',
@@ -14,6 +18,6 @@ module.exports = {
     '^.+\\.module\\.(css|sass|scss)$',
   ],
   moduleNameMapper: {
-    '\\.css$': '<rootDir>/src/tests/__mocks__/styleMock.js',
+    '^.+\\.(css|less)$': '<rootDir>/src/config/CSSStub.js',
   },
 };
