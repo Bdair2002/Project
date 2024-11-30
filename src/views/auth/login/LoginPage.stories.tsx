@@ -19,7 +19,7 @@ const createMockStore = (authState: any) =>
 const meta: Meta<typeof LoginPage> = {
   title: 'Pages/LoginPage',
   component: LoginPage,
-  tags: ['autodocs'],
+
   decorators: [
     Story => {
       const store = createMockStore({

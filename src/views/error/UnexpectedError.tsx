@@ -1,21 +1,19 @@
-import { useScrollTop } from '../../hooks/index';
+import React from 'react';
 import Button from '@mui/material/Button';
-import { HistoryContext } from '../../context/historyContext';
 import { styled } from '@mui/system';
 
-const PageNotFound = () => {
-  useScrollTop();
+const UnexpectedErrorPage = () => {
   return (
     <StyledContainer>
       <StyledMessage>
-        <StyledIcon>😓</StyledIcon>
-        <h1>Oops! Page Not Found</h1>
-        <p>The page you're looking for doesn't exist.</p>
+        <StyledIcon>😱</StyledIcon>
+        <h1>Oops! Something went wrong...</h1>
+        <p>An unexpected error occurred. Please try again later.</p>
         <StyledButton
           onClick={() => {
-            history.back();
+            window.location.reload();
           }}>
-          Go Back 👈
+          Reload Page 🔄
         </StyledButton>
       </StyledMessage>
     </StyledContainer>
@@ -27,20 +25,21 @@ const StyledContainer = styled('div')({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  background: 'linear-gradient(135deg, #f4f7f6, #e3e9f1)',
+  background: 'linear-gradient(135deg, #ff6f61, #ffb3ab)',
   flexDirection: 'column',
   fontFamily: "'Roboto', sans-serif",
-  color: '#333',
+  color: '#fff',
   textAlign: 'center',
   padding: '20px',
 });
 
 const StyledMessage = styled('div')({
   maxWidth: '600px',
-  background: '#fff',
+  background: '#ffffff',
+  color: '#333',
   padding: '40px',
-  borderRadius: '10px',
-  boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+  borderRadius: '12px',
+  boxShadow: '0 6px 20px rgba(0, 0, 0, 0.1)',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -48,22 +47,22 @@ const StyledMessage = styled('div')({
 });
 
 const StyledIcon = styled('div')({
-  fontSize: '4rem',
+  fontSize: '5rem',
   marginBottom: '20px',
 });
 
 const StyledButton = styled(Button)({
-  backgroundColor: '#007bff',
+  backgroundColor: '#28a745',
   color: '#fff',
-  padding: '10px 20px',
+  padding: '12px 25px',
   borderRadius: '25px',
-  fontSize: '1rem',
+  fontSize: '1.2rem',
   marginTop: '20px',
   textTransform: 'none',
   transition: 'background-color 0.3s ease',
   '&:hover': {
-    backgroundColor: '#0056b3',
+    backgroundColor: '#218838',
   },
 });
 
-export default PageNotFound;
+export default UnexpectedErrorPage;
