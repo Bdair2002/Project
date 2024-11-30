@@ -1,4 +1,3 @@
-// src/components/Guests.stories.tsx
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import Guests from './guests';
