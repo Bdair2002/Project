@@ -1,28 +1,27 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { configureStore } from '@reduxjs/toolkit';
 import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import authReducer from './redux/slices/authSlice';
 import router from './routers/AppRouter';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import ThemeProviderContext from './context/ThereProvider';
-const store = configureStore({
-  reducer: { auth: authReducer },
-  middleware: getDefaultMiddleware => getDefaultMiddleware(),
-});
-export type RootState = ReturnType<typeof store.getState>;
+import ThemeProviderContext from './context/ThemeProvider';
+import store from './redux/store/store';
+import { HistoryContext, history } from './context/historyContext';
+import GlobalSnackbar from './components/shared/Snackbar';
+import Loader from './components/shared/Loader';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
 root.render(
   <ThemeProviderContext>
-    <Provider store={store}>
-      <ToastContainer />
-      <RouterProvider router={router} />
-    </Provider>
+    <HistoryContext.Provider value={history}>
+      <Provider store={store}>
+        <Suspense fallback={<Loader />}>
+          <RouterProvider router={router} />
+        </Suspense>
+        <GlobalSnackbar />
+      </Provider>
+    </HistoryContext.Provider>
   </ThemeProviderContext>,
 );
 
