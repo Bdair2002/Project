@@ -15,6 +15,8 @@
           <a href="https://github.com/Bdair2002/Project/wiki"><strong>Explore The Docs »</strong></a>
          &nbsp;&nbsp;&nbsp;&nbsp;
          <a href="https://674afc1387420ffd43485475--snazzy-cheesecake-a0fc85.netlify.app/"><strong>▶️ Demo</strong></a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="https://linear.app/bdairintern/project/final-project-954d9c4dd0f0/"><strong> ⭐ LinearApp </strong></a>
 </div>
 
 
