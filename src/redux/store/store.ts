@@ -8,6 +8,7 @@ import hotelReducer from '../slices/hotelSlice';
 import cartReducer from '../slices/cartSlice';
 import snackbarReducer from '../slices/snackbarSlice';
 import { apiSlice } from '../slices/apiSlice';
+import HotelsList from '../slices/hotelsListSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -22,6 +23,7 @@ const store = configureStore({
     hotels: hotelReducer,
     cart: cartReducer,
     snackbar: snackbarReducer,
+    hotelsList: HotelsList,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({ serializableCheck: false })

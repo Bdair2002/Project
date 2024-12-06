@@ -26,11 +26,17 @@ const router = createBrowserRouter(
         <Route element={<UserRouter />}>
           <Route path={ROUTES.HOTEL} element={<view.HotelPage />} />
         </Route>
+
         <Route element={<UserRouter />}>
           <Route path={ROUTES.CART} element={<view.CartPage />} />
         </Route>
+
         <Route element={<UserRouter />}>
           <Route path={ROUTES.BOOKING_CONFIRMATION} element={<view.BookingConfirmation />} />
+        </Route>
+
+        <Route element={<UserRouter />}>
+          <Route path={ROUTES.ALL_HOTELS} element={<view.HotelsList />} />
         </Route>
       </Route>
 

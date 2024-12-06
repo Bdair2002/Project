@@ -10,3 +10,4 @@ export { default as AdminCities } from './admin/cities';
 export { default as AdminHotels } from './admin/hotels';
 export { default as AdminRooms } from './admin/rooms';
 export { default as AdminMain } from './admin/main/';
+export { default as HotelsList } from './hotelsList';

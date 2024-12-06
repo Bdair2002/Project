@@ -166,6 +166,9 @@ const SearchBox = () => {
               </Button>
             </Box>
           </Box>
+          <Button variant="outlined" onClick={() => navigate('/hotels')}>
+            View All Hotels
+          </Button>
         </Box>
       </form>
     </LocalizationProvider>
