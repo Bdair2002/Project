@@ -3,6 +3,7 @@ export const LOGIN = '/login';
 export const USERS_URL = '/users';
 export const SEARCH = '/search';
 export const HOTEL = '/hotel/:hotelId';
+export const ALL_HOTELS = '/hotels';
 export const CART = '/cart';
 export const BOOKING_CONFIRMATION = '/confirmation';
 export const ADMIN = '/admin';

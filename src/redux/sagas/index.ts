@@ -6,6 +6,7 @@ import searchResutlsSaga from './searchResultsSaga';
 import trendingSaga from './trendingSaga';
 import hotelSaga from './hotelSaga';
 import cartSaga from './cartSaga';
+import hotelsListSaga from './hotelsListSaga';
 function* rootSaga() {
   yield all([
     authSaga(),
@@ -15,6 +16,7 @@ function* rootSaga() {
     trendingSaga(),
     hotelSaga(),
     cartSaga(),
+    hotelsListSaga(),
   ]);
 }
 
